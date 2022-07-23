@@ -1,12 +1,12 @@
 // Discord imports
-import Discord, { Client, Guild, Interaction } from "discord.js"
+import { Client } from "discord.js"
 import { REST } from "@discordjs/rest"
 import { Routes } from "discord-api-types/v9"
 
 import getfiles from './getfiles'
 import config from '../../config.json'
+import { botLogger } from '../bot/index'
 import { IBotEvent, ICommand, IInteraction } from "./types"
-import { noPermsEmbed, commandErrorEmbed } from "./utils/embeds"
 
 export const commands = {} as {
     [key: string]: any
@@ -32,7 +32,6 @@ export default (client: Client) => {
     const interactionsFiles = getfiles("C:/Users/wayne/Desktop/Jakob2/JB Programs/bot-template/src/bot/interactions")
 
     for (const file of interactionsFiles) {
-        console.log(file)
         const interaction = require(`${file}`).interaction as IInteraction
 
         if(interaction.interactionType == "BUTTON") {
@@ -45,7 +44,7 @@ export default (client: Client) => {
             selectMenus[interaction.id.toLowerCase()] = interaction
         }
 
-        console.log(`Loaded ${interaction.id}`)
+        botLogger.Info(`Loaded interaction ${interaction.id}`)
     }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -68,10 +67,10 @@ export default (client: Client) => {
             }
         }
 
-        console.log(`Registered event ${event.eventName}`)
+        botLogger.Info(`Registered event ${event.eventName}`)
     }
 
-    console.log("Events registered ")
+    botLogger.Info("Events registered ")
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Commands ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -96,31 +95,31 @@ export default (client: Client) => {
     if (config.debug === true) {
         (async () => {
             try {
-                console.log('Started refreshing guild (/) commands.');
+                botLogger.Debug('Started refreshing guild (/) commands.');
 
                 await rest.put(
                     Routes.applicationGuildCommands(config.client_id, config.debug_guild),
                     { body: commandsBody },
                 );
 
-                console.log('Successfully reloaded application (/) commands.');
+                botLogger.Debug('Successfully reloaded application (/) commands.');
             } catch (error) {
-                console.error(error);
+                botLogger.Error(error);
             }
         })();
     } else {
         (async () => {
             try {
-                console.log('Started refreshing application (/) commands.');
+                botLogger.Debug('Started refreshing application (/) commands.');
 
                 await rest.put(
                     Routes.applicationCommands(config.client_id),
                     { body: commandsBody },
                 );
 
-                console.log('Successfully reloaded application (/) commands.');
+                botLogger.Debug('Successfully reloaded application (/) commands.');
             } catch (error) {
-                console.error(error);
+                botLogger.Debug(error);
             }
         })();
     }

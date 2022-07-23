@@ -1,15 +1,17 @@
 export class Logger {
-    prefix: String = ""
+    private prefix: String = ""
+    private debugMode: boolean = false
 
-    constructor(prefix?: String) {
+    constructor(debugMode: boolean, prefix?: String) {
         prefix = this.prefix
+        debugMode = this.debugMode
     }
 
     public Debug(text: String) {
-        console.debug(text)
+        if (this.debugMode == true) { console.debug(text) }
     }
     public Error(text: String) {
-        console.log(text)
+        console.error(text)
     }
     public Info(text: String) {
         console.log(text)

@@ -6,8 +6,8 @@ import { app } from '../api/index'
 
 import { Logger } from "./utils/Logger"
 
-export const botLogger = new Logger("[BOT]")
-export const apiLogger = new Logger("[API]")
+export const botLogger = new Logger(true, "[BOT]")
+export const apiLogger = new Logger(true, "[API]")
 
 
 export const client = new Client({
