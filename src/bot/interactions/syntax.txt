@@ -1,0 +1,12 @@
+import { Client, Interaction } from "discord.js";
+import { IInteraction } from "../types";
+
+export const button: IInteraction = {
+    id: "test",
+    interactionType: "BUTTON",
+    run: function (interaction: Interaction, client: Client) {
+        if (interaction.isButton()) {
+            interaction.reply({ content:"Hello World!", ephemeral: true})
+        }
+    }
+}

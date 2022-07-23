@@ -1,0 +1,27 @@
+{
+  "name": "bot-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "nodemon src/bot/index.ts",
+    "prod": "nodemon src/bot/index.ts"
+  },
+  "keywords": [],
+  "author": "JB Stepan",
+  "license": "JB Stepan Public License 1.0",
+  "dependencies": {
+    "discord-api-types": "^0.30.0",
+    "discord.js": "^14.0.3",
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "@discordjs/builders": "^0.12.0",
+    "@discordjs/rest": "^0.3.0",
+    "@types/express": "^4.17.13",
+    "@types/node": "^18.0.6",
+    "chalk": "^5.0.1",
+    "ts-node": "^10.5.0",
+    "typescript": "^4.5.5"
+  }
+}
