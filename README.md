@@ -9,3 +9,5 @@ This is simple Discord.js bot template made in th style of how I make Discord bo
 - Logger
 - and more...
 
+## Docs
+Currently being worked on, I currently have no exact ETA on when it will be done expect around 1-2 weeks.
